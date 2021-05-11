@@ -1,0 +1,14 @@
+.region-sidebar-first {
+  .menu {
+    margin-left: 0;
+  }
+}
+
+.region-tray {
+  .tabs {
+    &.primary {
+      border-bottom: 1px solid $light-gray;
+      margin-bottom: 20px;
+    }
+  }
+}

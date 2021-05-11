@@ -1,0 +1,86 @@
+// LAYOUT
+// This is the main layout file.
+// This file should be used to define the primary page layout that each of the page types will be extending.
+// This includes global styles for html, body, etc.
+
+@viewport {
+  zoom: 1;
+  width: extend-to-zoom;
+}
+
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1;
+}
+
+//Enable font-smoothing
+html {
+  @include opensans;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $text-color;
+  font-size: $base-font-size; // Don't modify static unit.
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+body {
+  // Disable in production mode;
+  // @include show-breakpoints;
+  text-size-adjust: none;
+}
+
+main {
+  min-height: 400px;
+  overflow-x: hidden;
+}
+
+.node--unpublished {
+  background-color: transparent;
+}
+
+.region-content {
+  margin-bottom: 50px;
+}
+
+.page-title {
+  padding: 20px 0;
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+// Temporary remove the inline style
+.field--label-inline .field__label,
+.field--label-inline .field__items {
+  float: none;
+}
+
+// .layout-content.with-sidebar,
+// .layout-content.with-two-sidebar,
+[class*="col-8"],
+[class*="col-6"] {
+  [class*="col-8"],
+  [class*="col-9"],
+  [class*="col-10"],
+  [class*="col-11"],
+  .grid--1col & [class*="col"] {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+[class*="col-6"] {
+  [class*="col-4"]:not(.links__inner),
+  [class*="grid-3"] > [class~="col"],
+  [class*="_lg-10"] > [class~="col"],
+  [class*="grid-4"] > [class~="col"] {
+    flex-basis: 100%;
+    max-width: 100%;
+
+    @media (min-width: $desktopWide) {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+  }
+}
