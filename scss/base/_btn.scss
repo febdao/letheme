@@ -9,25 +9,22 @@
   line-height: 1;
   min-width: rem(100px);
   outline: none;
-  padding: 14px 24px 13px;
+  padding: 14px 24px;
   text-align: center;
   text-shadow: none;
   transition: all .5s ease;
-  background-color: $yellow;
+  background-color: $btn-color;
   border: 0;
-  border-bottom: 1px solid $yellow;
-  color: $text-color;
+  color: $white;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 0 0 1px $yellow;
   &:active,
   &:hover,
   &:focus {
-    color: $text-color;
-    border-bottom: 5px solid $black;
     transition: all .5s ease;
-    padding-bottom: 9px;
+    background-color: $btn-color-hover;
+    color: $white;
   }
   &:focus {
     border-color: $black;

@@ -44,31 +44,17 @@ gulp.task('watch', gulp.parallel('styles', function(){
 }));
 
 gulp.task('sg-build', async function(){
-  exec('cd ../pattern-lab/ && npm install && npm run build');
+  exec('cd ../pattern-lab/ && npm install && npm run start');
 });
 
-gulp.task('browser-sync', function(){
-  browserSync.init({
-    server: {
-      baseDir: "../",
-    },
-    files: [
-      src.cssFile,
-      src.javascript
-    ]
-  })
+gulp.task('sg-updateCss', async function(){
+  exec('rm ../pattern-lab/source/css/style.css && cp ../css/style.css ../pattern-lab/source/css/style.css');
 });
 
 // Task for local, static development.
-gulp.task('sg-server', gulp.parallel('browser-sync', 'styles', 'sg-build', function (done) {
-
+gulp.task('sg-server', gulp.parallel('styles', 'sg-build', 'sg-updateCss', function (done) {
   gulp.watch(src.scss, gulp.series(['styles']));
-  gulp.watch(src.javascript).on('change', reload);
-  gulp.watch(src.cssFile).on('change', reload);
-  gulp.watch(src.htmlFile).on('change', reload);
-  gulp.watch(src.twigFile, gulp.series(['sg-build']));
-  gulp.watch(src.jsonFile, gulp.series(['sg-build']));
-  gulp.watch(src.mdFile, gulp.series(['sg-build']));
+  gulp.watch(src.cssFile, gulp.series(['sg-updateCss']));
   done();
 }));
 
