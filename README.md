@@ -1,4 +1,5 @@
-#WGEA Theme Styleguide
+# Drupal 9 Patternlab Theme
+letheme = Drupal 9 theme + patternlab
 
 ##Getting started
 
