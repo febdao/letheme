@@ -58,4 +58,4 @@ gulp.task('sg-server', gulp.parallel('styles', 'sg-build', 'sg-updateCss', funct
   done();
 }));
 
-gulp.task('default', gulp.parallel('styles'));
+gulp.task('default', gulp.parallel('sg-server'));
