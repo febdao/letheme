@@ -15,7 +15,7 @@ var gulp = require('gulp'),
     twigFile: '../pattern-lab/source/_**/**/*.twig',
     jsonFile: '../pattern-lab/source/_**/**/*.json',
     mdFile: '../pattern-lab/source/_**/**/*.md',
-    javascript: '../js/*.js',
+    jsFile: '../js/*.js',
     cssFile: '../css/*.css',
     htmlFile: '../pattern-lab/public/styleguide/html/*.html',
   };
@@ -49,12 +49,15 @@ gulp.task('sg-build', async function(){
 
 gulp.task('sg-updateCss', async function(){
   exec('rm ../pattern-lab/source/css/style.css && cp ../css/style.css ../pattern-lab/source/css/style.css');
+  exec('rm -rf ../pattern-lab/source/fonts && rsync -av ../fonts ../pattern-lab/source/');
+  exec('rm ../pattern-lab/source/js/script.js && cp ../js/script.js ../pattern-lab/source/js/script.js');
 });
 
 // Task for local, static development.
-gulp.task('sg-server', gulp.parallel('styles', 'sg-build', 'sg-updateCss', function (done) {
+gulp.task('sg-server', gulp.parallel('sg-build', 'styles', 'sg-updateCss', function (done) {
   gulp.watch(src.scss, gulp.series(['styles']));
   gulp.watch(src.cssFile, gulp.series(['sg-updateCss']));
+  gulp.watch(src.jsFile, gulp.series(['sg-updateCss']));
   done();
 }));
 
